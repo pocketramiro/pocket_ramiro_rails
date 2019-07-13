@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
   enable_extension "plpgsql"
 
   create_table "notes", force: :cascade do |t|
-    t.integer "foreign_key"
+    t.integer "table_key"
     t.string "table_name"
     t.text "content"
     t.bigint "user_id"
@@ -58,16 +58,16 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
     t.bigint "resource_type_id"
     t.string "name"
     t.float "cost"
-    t.bigint "users_id"
+    t.bigint "user_id"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_type_id"], name: "index_resources_on_resource_type_id"
-    t.index ["users_id"], name: "index_resources_on_users_id"
+    t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "foreign_key"
+    t.integer "table_key"
     t.string "table_name"
     t.bigint "user_id"
     t.text "notes"
@@ -94,6 +94,6 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
   add_foreign_key "resource_parts", "parts"
   add_foreign_key "resource_parts", "resources"
   add_foreign_key "resources", "resource_types"
-  add_foreign_key "resources", "users", column: "users_id"
+  add_foreign_key "resources", "users"
   add_foreign_key "tickets", "users"
 end
