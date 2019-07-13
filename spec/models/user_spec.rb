@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many :resource }
+    it { should have_many :resources }
   end
 
   describe 'instance methods' do

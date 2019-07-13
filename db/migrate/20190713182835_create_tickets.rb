@@ -1,7 +1,7 @@
 class CreateTickets < ActiveRecord::Migration[5.2]
   def change
     create_table :tickets do |t|
-      t.integer :foreign_key
+      t.integer :table_key
       t.string :table_name
       t.references :user, foreign_key: true
       t.text :notes
