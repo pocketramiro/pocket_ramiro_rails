@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_13_182835) do
+ActiveRecord::Schema.define(version: 2019_07_13_225809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,14 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "parts", force: :cascade do |t|
     t.string "name"
     t.integer "inventory"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
   create_table "resource_parts", force: :cascade do |t|
     t.bigint "part_id"
     t.bigint "resource_id"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["part_id"], name: "index_resource_parts_on_part_id"
@@ -49,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
     t.bigint "contact_number"
     t.string "contact_name"
     t.text "manual_url"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
     t.string "name"
     t.float "cost"
     t.bigint "user_id"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_type_id"], name: "index_resources_on_resource_type_id"
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
     t.integer "frequency_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -84,7 +86,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_182835) do
     t.string "email"
     t.string "password_digest"
     t.bigint "phone_number"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
