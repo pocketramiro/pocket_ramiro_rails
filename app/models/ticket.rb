@@ -5,4 +5,9 @@ class Ticket < ApplicationRecord
   belongs_to :user
 
   enum priority: { high:3 , medium: 2, low: 1 }
+
+  def self.all_active_tickets
+    where(active:true)
+  end
+
 end
