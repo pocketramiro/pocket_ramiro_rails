@@ -4,4 +4,5 @@ class Ticket < ApplicationRecord
 
   belongs_to :user
 
+  enum priority: { high:3 , medium: 2, low: 1 }
 end
