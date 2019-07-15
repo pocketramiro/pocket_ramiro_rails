@@ -1,7 +1,19 @@
 class Api::V1::ResourcesController < ApplicationController
 
   def index
-    resources = Resources.all_active_resources
+    resources = Resource.all_active_resources
     render json: resources
   end
+
+  def show
+    resource = Resource.active_resource(resource_params[:id])
+    render json: resource
+  end
+
+
+  private
+
+    def resource_params
+      params.require(:resources).permit(:id)
+    end
 end
