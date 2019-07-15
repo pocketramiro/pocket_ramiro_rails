@@ -11,13 +11,26 @@ RSpec.describe "as a registered user", type: :request do
 
   it "I can see all the active resources in the system" do
     get "/api/v1/resources"
+    resources = Resource.all_active_resources
 
     expect(response).to be_successful
-    results = JSON.parse(response.body, symbolize_name: true)
+    results = JSON.parse(response.body, symbolize_names: true)
     expect(results.count).to eq(2)
-    expect(results[0]["name"]).to be_a(String)
-    expect(results[0]["cost"]).to be_a(Float)
+    expect(results[0]["name"]).to eq("Bright Tank 1")
+    expect(results[0]["cost"]).to eq(20000.00)
     expect(results[0]["user_id"]).to eq(1)
     expect(results[0]["active"]).to eq(true)
+  end
+
+  it "I can see a specific ticket in the system" do
+    get "/api/v1/resources/1"
+
+    expect(response).to be_successful
+    results = JSON.parse(response.body, symbolize_names: true)
+    expect(results.count).to eq(1)
+    expect(results["name"]).to eq("Bright Tank 1")
+    expect(results["cost"]).to eq(20000.00)
+    expect(results["user_id"]).to eq(1)
+    expect(results["active"]).to eq(true)
   end
 end
