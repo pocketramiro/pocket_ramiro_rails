@@ -8,4 +8,14 @@ class Api::V1::Resources::NotesController < ApplicationController
     note = Note.find(params["note_id"])
     render json: note
   end
+
+  def create
+    note = Note.create(notes_params)
+  end
+
+  private
+
+    def notes_params
+      params.permit(:id, :user_id, :table_key, :table_name, :content, :created_at, :updated_at)
+    end
 end
