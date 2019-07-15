@@ -21,6 +21,19 @@ class Api::V1::ResourcesController < ApplicationController
     end
   end
 
+  def update
+    resource = Resource.find(params[:id])
+    if resource
+      resource.update(resource_params)
+      updated_resource = Resource.find(params[:id])
+      render json: updated_resource
+    else
+      render json: {
+        "Error": "Resource does not exist"
+      }
+    end
+  end
+
   private
 
     def resource_params

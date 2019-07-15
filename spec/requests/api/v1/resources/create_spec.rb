@@ -6,8 +6,8 @@ RSpec.describe "as a registered user", type: :request do
     @r_type1 = ResourceType.create(category: "Bright Tank", company: "Mueller", contact_number: 5419307880, contact_name: "Sheryl Michiel", active: true,manual_url: "https://en.wikipedia.org/wiki/Donald_Cameron_(mayor", created_at: "1994-06-22 00:00:00", updated_at: "2000-01-01 00:00:00",id: 1)
   end
 
-  describe "When I go to the machine" do
-    it "I can see all the active resources in the system" do
+  describe "When I go to the machine dashboard" do
+    it "I can create a new resource in the system" do
       new_resource = {
         id: 1,
         resource_type_id: 1,
