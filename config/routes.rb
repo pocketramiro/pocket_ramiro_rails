@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :resources do
         get ':id/tickets', to: 'tickets#index'
+        post ':id/tickets', to: 'tickets#create'
       end
     end
   end
