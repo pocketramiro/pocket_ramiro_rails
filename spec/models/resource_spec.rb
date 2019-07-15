@@ -9,6 +9,8 @@ RSpec.describe Resource, type: :model do
   describe 'relationships' do
     it { should have_many :resource_parts }
     it { should have_many(:parts).through(:resource_parts) }
+    it { should belong_to :resource_type }
+    it { should belong_to :user }
   end
 
   describe 'instance methods' do
