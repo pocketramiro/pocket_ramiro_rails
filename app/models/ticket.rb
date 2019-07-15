@@ -10,4 +10,14 @@ class Ticket < ApplicationRecord
     where(active:true)
   end
 
+  def self.tickets_by_resource(resource_id)
+    joins(:resources)
+    where(table_key: resource_id)
+  end
+
+  def self.tickets_by_part(part_id)
+    joins(:parts)
+    where(part_id: part_id)
+  end
+
 end
