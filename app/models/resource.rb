@@ -7,4 +7,8 @@ class Resource < ApplicationRecord
   def self.all_active_resources
     where(active:true)
   end
+
+  def self.active_resource(id)
+    find(id)
+  end
 end

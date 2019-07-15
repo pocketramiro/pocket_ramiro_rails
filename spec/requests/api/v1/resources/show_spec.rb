@@ -9,15 +9,15 @@ RSpec.describe "as a registered user", type: :request do
     @resource3 = @r_type1.resources.create(name: "Bright Tank 4", cost:10000.00, user_id: 1, created_at: "2013-12-22 4:11:33", updated_at: "2018-12-22 4:11:33", active: false,id: 3)
   end
 
-  it "I can see all the active resources in the system" do
-    get "/api/v1/resources"
+  it "I can see a specific ticket in the system" do
+    get "/api/v1/resources/1"
+
     expect(response).to be_successful
     results = JSON.parse(response.body, symbolize_names: true)
-
-    expect(results.count).to eq(2)
-    expect(results[0][:name]).to eq("Bright Tank 1")
-    expect(results[0][:cost]).to eq(20000.00)
-    expect(results[0][:user_id]).to eq(1)
-    expect(results[0][:active]).to eq(true)
+    
+    expect(results[:name]).to eq("Bright Tank 1")
+    expect(results[:cost]).to eq(20000.00)
+    expect(results[:user_id]).to eq(1)
+    expect(results[:active]).to eq(true)
   end
 end
