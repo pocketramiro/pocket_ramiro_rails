@@ -25,4 +25,9 @@ class Api::V1::Resources::TicketsController < ApplicationController
     end
   end
 
+  def show
+    ticket = Ticket.find(params["ticket_id"].to_i)
+    render json: ticket
+  end
+
 end
