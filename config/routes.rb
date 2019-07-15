@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         get ':id/tickets', to: 'tickets#index'
       end
 
+      resources :resource_types, only: [:index, :create, :show, :update]
     end
   end
 end
