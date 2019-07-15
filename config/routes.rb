@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :resources, only: [:index, :show, :create, :update]
 
-      get '/tickets', to: 'tickets#index'
+      # get '/tickets', to: 'tickets#index'
+      resources :tickets, only: [:index, :show]
 
       namespace :resources do
         get ':id/tickets', to: 'tickets#index'
