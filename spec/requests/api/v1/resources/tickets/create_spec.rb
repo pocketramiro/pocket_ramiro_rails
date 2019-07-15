@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe 'as a registered user', :type => :request do
   describe 'when i go to the ticket dashboard' do
     it 'I can add a ticket to the system' do
+      Ticket.destroy_all
+      Resource.destroy_all
+      ResourceType.destroy_all
+      User.destroy_all
+      
       User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password_digest:"password", role:0)
 
       params = {
