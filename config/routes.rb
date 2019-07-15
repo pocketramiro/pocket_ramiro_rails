@@ -9,6 +9,8 @@ Rails.application.routes.draw do
         get ':id/tickets', to: 'tickets#index'
         get ':id/tickets/:ticket_id', to: 'tickets#show'
         post ':id/tickets', to: 'tickets#create'
+
+        get ':id/notes', to: 'notes#index'
       end
 
       namespace :parts do
