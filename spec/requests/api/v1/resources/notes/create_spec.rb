@@ -26,15 +26,31 @@ RSpec.describe "as a registered user", type: :request do
       results = JSON.parse(response.body, symbolize_names: true)
       note = Note.last
 
-      expect(results.count).to eq(3)
-      expect(results[0][:id]).to eq(1)
-      expect(results[0][:user_id]).to eq(1)
-      expect(results[0][:table_key]).to eq(1)
-      expect(results[0][:table_name]).to eq("Resources")
+      expect(results[:id]).to eq(1)
+      expect(results[:user_id]).to eq(1)
+      expect(results[:table_key]).to eq(1)
+      expect(results[:table_name]).to eq("Resources")
     end
 
     it "does not allow me to create a note without a user or resource" do
+      new_note = {id: 3,
+                   table_key: 1,
+                   table_name: "Resources",
+                   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                   created_at: "2019-07-05 20:35:50",
+                   updated_at: "2019-07-10 20:35:50"}
 
+
+      post "/api/v1/resources/1/notes", params: new_note
+
+      expect(response).to be_successful
+      results = JSON.parse(response.body, symbolize_names: true)
+      note = Note.last
+
+      expect(note).to eq(nil)
+      expect(results).to eq({
+        "Error": "Note could not be created."
+        })
     end
   end
 end

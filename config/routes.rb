@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
         get ':id/notes', to: 'notes#index'
         get ':id/notes/:note_id', to: 'notes#show'
-        get ':id/notes', to: 'notes#create'
+        post ':id/notes', to: 'notes#create'
       end
 
       namespace :parts do

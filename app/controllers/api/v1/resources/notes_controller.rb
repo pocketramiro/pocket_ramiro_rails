@@ -11,6 +11,13 @@ class Api::V1::Resources::NotesController < ApplicationController
 
   def create
     note = Note.create(notes_params)
+    if note.save
+      render json: note
+    else
+      render json: {
+        "Error": "Note could not be created."
+      }
+    end
   end
 
   private
