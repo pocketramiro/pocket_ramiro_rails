@@ -29,7 +29,7 @@ class Api::V1::ResourcesController < ApplicationController
       render json: updated_resource
     else
       render json: {
-        "Error": "Resource does not exist"
+        "Error": "Resource does not exist in database."
       }
     end
   end
