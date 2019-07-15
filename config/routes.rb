@@ -10,9 +10,10 @@ Rails.application.routes.draw do
         get ':id/tickets/:ticket_id', to: 'tickets#show'
         post ':id/tickets', to: 'tickets#create'
 
-        get ':id/notes', to: 'notes#index'
-        get ':id/notes/:note_id', to: 'notes#show'
-        post ':id/notes', to: 'notes#create'
+        get ':resource_id/notes', to: 'notes#index'
+        get ':resource_id/notes/:id', to: 'notes#show'
+        post ':resource_id/notes', to: 'notes#create'
+        patch ':resource_id/notes/:id', to: 'notes#update'
       end
 
       namespace :parts do
