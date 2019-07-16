@@ -10,7 +10,4 @@ class Resource < ApplicationRecord
     where(active:true)
   end
 
-  def self.active_resource(id)
-    find(id)
-  end
 end
