@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       end
 
       resources :resource_types, only: [:index, :create, :show, :update]
+
+      resources :users, only: [:show, :create, :update]
     end
   end
 end
