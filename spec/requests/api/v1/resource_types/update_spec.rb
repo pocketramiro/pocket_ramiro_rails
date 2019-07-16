@@ -22,7 +22,7 @@ RSpec.describe "as a registered user", type: :request do
     end
 
     # patch "cannot find Resource with that id" - yes I know
-    xit "I cannot update an existing resource_type if it does not exist" do
+    it "I cannot update an existing resource_type if it does not exist" do
       fixed_resource_type = {name: "Bright Tank"}
 
       patch "/api/v1/resource_types/2", params: fixed_resource_type
@@ -30,7 +30,7 @@ RSpec.describe "as a registered user", type: :request do
       results = JSON.parse(response.body, symbolize_names: true)
 
       expect(results).to eq({
-        "Error": "Resource could not be created."
+        "Error": "Resource type does not exist."
         })
 
     end
