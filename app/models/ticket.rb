@@ -11,13 +11,13 @@ class Ticket < ApplicationRecord
   end
 
   def self.tickets_by_resource(resource_id)
-    joins(:resources)
     where(table_key: resource_id)
+    .where(table_name: "Resources")
   end
 
   def self.tickets_by_part(part_id)
-    joins(:parts)
-    where(part_id: part_id)
+    where(table_key: part_id)
+    .where(table_name: "Parts")
   end
 
 end
