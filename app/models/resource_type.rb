@@ -7,8 +7,4 @@ class ResourceType < ApplicationRecord
     where(active:true)
   end
 
-  def self.active_resource_type(id)
-    find(id)
-  end
-
 end
