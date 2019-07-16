@@ -5,9 +5,9 @@ RSpec.describe "as a registered user", type: :request do
     Resource.destroy_all
     User.destroy_all
     ResourceType.destroy_all
-    
+
     @user  = User.create(id: 1, name: "Cameron Marks", email: "cameron_marks@greatdivide.com", password_digest: "password", role: 0, phone_number: "7208674848", active: true, created_at: "2015-11-29 00:00:00", updated_at: "2019-06-01 00:00:00")
-    @r_type1 = ResourceType.create(category: "Bright Tank", company: "Mueller", contact_number: 5419307880, contact_name: "Sheryl Michiel", active: true,manual_url: "https://en.wikipedia.org/wiki/Donald_Cameron_(mayor", created_at: "1994-06-22 00:00:00", updated_at: "2000-01-01 00:00:00",id: 1)
+  
   end
 
   describe "When I go to the machine dashboard" do
@@ -46,9 +46,9 @@ RSpec.describe "as a registered user", type: :request do
 
       expect(response).to be_successful
       results = JSON.parse(response.body, symbolize_names: true)
-      resource = Resource.last
+      resource_type = ResourceType.last
 
-      expect(resource).to eq(nil)
+      expect(resource_type).to eq(nil)
       expect(results).to eq({
         "Error": "Resource type could not be created."
         })
