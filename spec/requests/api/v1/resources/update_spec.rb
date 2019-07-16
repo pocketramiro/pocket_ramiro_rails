@@ -25,7 +25,7 @@ RSpec.describe "as a registered user", type: :request do
     end
 
     # patch "cannot find Resource with that id" - yes I know
-    xit "I cannot update an existing resource if it does not exist" do
+    it "I cannot update an existing resource if it does not exist" do
       fixed_resource = {name: "Bright Tank 4"}
 
       patch "/api/v1/resources/2", params: fixed_resource

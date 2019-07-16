@@ -21,7 +21,7 @@ class Api::V1::Resources::NotesController < ApplicationController
   end
 
   def update
-    note = Note.find(params[:id])
+    note = Note.find_by(id: params[:id])
 
     if note
       note.update(notes_params)

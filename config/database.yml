@@ -82,4 +82,4 @@ production:
   <<: *default
   database: pocket_ramiro_rails_production
   username: pocket_ramiro_rails
-  password: <%= ENV['POCKET_RAMIRO_RAILS_DATABASE_PASSWORD'] %>
+  password: POCKET_RAMIRO_RAILS_DATABASE_PASSWORD

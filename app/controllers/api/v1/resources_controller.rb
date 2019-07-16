@@ -22,7 +22,7 @@ class Api::V1::ResourcesController < ApplicationController
   end
 
   def update
-    resource = Resource.find(params[:id])
+    resource = Resource.find_by(id: params[:id])
     if resource
       resource.update(resource_params)
       updated_resource = Resource.find(params[:id])

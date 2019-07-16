@@ -24,6 +24,19 @@ class Api::V1::Resources::TicketsController < ApplicationController
     render json: ticket
   end
 
+  def update
+    ticket = Ticket.find_by(id: params[:id])
+    if ticket
+      ticket.update(resource_ticket_params)
+      updated_ticket = Ticket.find(params[:id])
+      render json: updated_ticket
+    else
+      render json: {
+        "Error": "Resource ticket does not exist."
+      }
+    end
+  end
+
 private
   def resource_ticket_params
     params.permit(:table_key, :table_name, :priority, :notes, :user_id, :frequency_unit, :frequency_value, :active)

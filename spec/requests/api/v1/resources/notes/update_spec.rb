@@ -28,7 +28,7 @@ RSpec.describe "as a registered user", type: :request do
     end
 
     # patch "cannot find Note with that id" - yes I know
-    xit "I cannot update an existing resource if it does not exist" do
+    it "I cannot update an existing resource if it does not exist" do
       fixed_note = {content: "Here is so me new content"}
 
       patch "/api/v1/resources/1/notes/15", params: fixed_note
