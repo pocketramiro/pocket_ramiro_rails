@@ -11,7 +11,7 @@ RSpec.describe "as a registered user", type: :request do
       new_part = {
             name: "Tank patch",
             inventory: 1,
-            active: true,
+            active: true
       }
       post "/api/v1/parts", params: new_part
 
@@ -29,7 +29,7 @@ RSpec.describe "as a registered user", type: :request do
       new_part = {
             name: nil,
             inventory: 1,
-            active: true,
+            active: true
       }
       post "/api/v1/parts", params: new_part
 
