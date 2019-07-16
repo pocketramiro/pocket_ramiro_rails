@@ -5,13 +5,7 @@ class Api::V1::Resources::TicketsController < ApplicationController
   end
 
   def create
-    ticket = Ticket.new(
-      table_name: params["table_name"],
-      table_key: params["id"].to_i,
-      notes: params["notes"],
-      user_id: params["user_id"],
-      priority: params["priority"].to_i
-    )
+    ticket = Ticket.new(resource_ticket_params)
     if ticket.save
       render json: {status: "201",
       body: {
@@ -28,6 +22,11 @@ class Api::V1::Resources::TicketsController < ApplicationController
   def show
     ticket = Ticket.find(params["ticket_id"].to_i)
     render json: ticket
+  end
+
+private
+  def resource_ticket_params
+    params.permit(:table_key, :table_name, :priority, :notes, :user_id, :frequency_unit, :frequency_value, :active)
   end
 
 end

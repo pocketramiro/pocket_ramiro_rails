@@ -7,11 +7,11 @@ RSpec.describe 'as a registered user', :type => :request do
       Resource.destroy_all
       ResourceType.destroy_all
       User.destroy_all
-      
+
       User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password_digest:"password", role:0)
 
       params = {
-        "priority": "2",
+        "priority": "medium",
         "notes": "needs cleaning",
         "table_key": "3",
         "table_name": "Resource",
