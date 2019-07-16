@@ -22,14 +22,14 @@ class Api::V1::ResourceTypesController < ApplicationController
   end
 
   def update
-    resource_type = ResourceType.find(params[:id])
+    resource_type = ResourceType.find_by(id: params[:id])
     if resource_type
       resource_type.update(resource_type_params)
       updated_resource = ResourceType.find(params[:id])
       render json: updated_resource
     else
       render json: {
-        "Error": "Resource type does not exist"
+        "Error": "Resource type does not exist."
       }
     end
   end
