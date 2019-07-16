@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         get ':id/tickets', to: 'tickets#index'
         get ':id/tickets/:ticket_id', to: 'tickets#show'
         post ':id/tickets', to: 'tickets#create'
+        patch ':resource_id/tickets/:id', to: 'tickets#update'
 
         get ':resource_id/notes', to: 'notes#index'
         get ':resource_id/notes/:id', to: 'notes#show'
