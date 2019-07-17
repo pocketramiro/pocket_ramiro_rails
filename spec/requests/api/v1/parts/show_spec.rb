@@ -1,7 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "as a registered user", type: :request do
-
+  before :each do
+    Ticket.destroy_all
+    Resource.destroy_all
+    ResourceType.destroy_all
+    User.destroy_all
+  end
 
   it "I can see a specific part in the system" do
     user  = User.create(id: 1, name: "Cameron Marks", email: "cameron_marks@greatdivide.com", password_digest: "password", role: 0, phone_number: "7208674848", active: true, created_at: "2015-11-29 00:00:00", updated_at: "2019-06-01 00:00:00")
