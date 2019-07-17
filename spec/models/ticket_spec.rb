@@ -52,5 +52,12 @@ RSpec.describe Ticket, type: :model do
           expect(Ticket.tickets_by_part(2)).to_not eq([@ticket2])
         end
       end
+
+      describe '.search' do
+        it 'returns tickets search results' do
+          expect(Ticket.search("Resources", true)[0]).to eq(@ticket1)
+          expect(Ticket.search("Parts", false)[0]).to_not eq([@ticket3])
+        end
+      end
   end
 end
