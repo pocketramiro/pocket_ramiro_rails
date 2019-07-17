@@ -6,7 +6,7 @@ class Api::V1::ResourceTypesController < ApplicationController
   end
 
   def show
-    resource = ResourceType.active_resource_type(resource_type_params[:id])
+    resource = ResourceType.find(resource_type_params[:id])
     render json: resource
   end
 
