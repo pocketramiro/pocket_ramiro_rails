@@ -25,9 +25,9 @@ jobs:
     working_directory: ~/pocket_ramiro_rails
 
     steps:
-      - checkout
-      - run: rails db:setup
-      
+      - run:
+          command: rails db:setup
+
       # Download and cache dependencies
       - restore_cache:
           keys:
