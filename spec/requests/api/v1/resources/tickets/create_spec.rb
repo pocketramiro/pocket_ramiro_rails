@@ -17,18 +17,19 @@ RSpec.describe 'as a registered user', :type => :request do
         notes: "needs cleaning",
         table_key: 3,
         table_name: "Resource",
-        user_id: 1
+        user_id: 1,
       }
       post '/api/v1/resources/3/tickets', params: params
       ticket = Ticket.last
       data = JSON.generate(ticket)
 
       expect(response).to be_successful
-      expect(JSON.parse(response.body)).to eq(
-        {"status" =>  "201", "body" => {
-          "message" => "You have successfully created a ticket."
-          }}
-      )
+      # binding.pry
+      expect(JSON.parse(response.body)["priority"]).to eq("medium")
+      expect(JSON.parse(response.body)["notes"]).to eq("needs cleaning")
+      expect(JSON.parse(response.body)["table_key"]).to eq(3)
+      expect(JSON.parse(response.body)["table_name"]).to eq("Resource")
+      expect(JSON.parse(response.body)["user_id"]).to eq(1)
     end
   end
 end
