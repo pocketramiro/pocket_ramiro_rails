@@ -13,10 +13,7 @@ class Api::V1::PartsController < ApplicationController
   def create
     part = Part.new(part_params)
     if part.save
-      render json: {status: "201",
-      body: {
-        "message": "You have successfully created a part."
-        }}
+      render json: part
     else
       render json: {status: "406",
       body: {

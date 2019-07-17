@@ -7,10 +7,7 @@ class Api::V1::Resources::TicketsController < ApplicationController
   def create
     ticket = Ticket.new(resource_ticket_params)
     if ticket.save
-      render json: {status: "201",
-      body: {
-        "message": "You have successfully created a ticket."
-        }}
+      render json: ticket
     else
         render json: {status: "406",
         body: {
