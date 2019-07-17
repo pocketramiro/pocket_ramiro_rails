@@ -17,7 +17,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-
+gem 'rspec_junit_formatter'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -32,7 +32,10 @@ gem 'fast_jsonapi'
 gem 'faraday'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'rack-cors'
+
+
+gem "rack-cors"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
