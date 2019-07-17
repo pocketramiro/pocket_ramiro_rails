@@ -8,19 +8,19 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.6.3
-      environment:
-        RAILS_ENV: test
-        PGHOST: localhost
-        PGUSER: pocket_ramiro_rails
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: pocket_ramiro_rails
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:10.6
-      environment:
-        POSTGRES_USER: pocket_ramiro_rails
-        POSTGRES_DB: pocket_ramiro_rails_test
-        POSTGRES_PASSWORD: ""
+        environment:
+          POSTGRES_USER: pocket_ramiro_rails
+          POSTGRES_DB: pocket_ramiro_rails_test
+          POSTGRES_PASSWORD: ""
 
     working_directory: ~/pocket_ramiro_rails
 
