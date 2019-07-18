@@ -7,7 +7,7 @@ RSpec.describe 'as a registered user', :type => :request do
       Resource.destroy_all
       ResourceType.destroy_all
       User.destroy_all
-      
+
       User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password_digest:"password", role:0)
       ResourceType.create(id: 1, category:"vehicle", company:"Brew Bears")
       ResourceType.create(id: 2, category:"equipment", company:"Brew Bears")
@@ -23,7 +23,8 @@ RSpec.describe 'as a registered user', :type => :request do
 
       expect(response).to be_successful
       results = JSON.parse(response.body, symbolize_name: true)
-      expect(results.count).to eq(11)
+
+      expect(results.count).to eq(12)
       expect(results["table_key"]).to be_a(Integer)
       expect(results["table_name"]).to be_a(String)
       expect(results["notes"]).to be_a(String)
