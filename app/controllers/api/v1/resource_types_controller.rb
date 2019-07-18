@@ -1,19 +1,19 @@
 class Api::V1::ResourceTypesController < ApplicationController
 
   def index
-    resources = ResourceType.all_active_resource_types
-    render json: resources
+    resource_types = ResourceType.all_active_resource_types
+    render json: resource_types
   end
 
   def show
-    resource = ResourceType.find(resource_type_params[:id])
-    render json: resource
+    resource_type = ResourceType.find(resource_type_params[:id])
+    render json: resource_type
   end
 
   def create
-    resource = ResourceType.create(resource_type_params)
-    if resource.save
-      render json: resource
+    resource_type = ResourceType.create(resource_type_params)
+    if resource_type.save
+      render json: resource_type
     else
       render json: {
         "Error": "Resource type could not be created."
