@@ -23,7 +23,7 @@ RSpec.describe 'as a registered user', :type => :request do
 
       expect(response).to be_successful
       results = JSON.parse(response.body, symbolize_name: true)
-      expect(results.count).to eq(11)
+      expect(results.count).to eq(12)
       expect(results["table_key"]).to be_a(Integer)
       expect(results["table_name"]).to be_a(String)
       expect(results["notes"]).to be_a(String)
