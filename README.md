@@ -29,7 +29,7 @@ Jennica Stiehl(https://github.com/stiehlrod)
 ```
 bundle install
  ```
-#### Change your versions
+#### If you need to change your versions
 ##### Open your Gemfile
 ```
 Ruby '2.6.3'
@@ -72,11 +72,16 @@ bundle exec rspec
 ```
 ### Tech Stack
 ```
+-ActiveRecord  
+-AWS: Elastic Beanstalk, RDS, Amplify
+-CircleCI
 -Javascript
+-Jest
 -jQuery
--Ruby on Rails
+-Postgres
 -React
--Postgresql
+-RSpec
+-Ruby on Rails
 ```
 
 ## Endpoints
