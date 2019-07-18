@@ -15,6 +15,8 @@ Problem and Solution Two
 There are a great many machines and resources at Great Divide that are either unique, extremely mature or both and they require a great deal of maintenance and working knowledge that can sometimes be lost when someone leaves or absent when someone is on vacation.
 
 This problem has a two pronged solution. We created a ticketing system and a notes system both able to tie back to a specific resource or part or both. We have a ticket portal that will be able to display tickets in various ways.
+
+Future functionality aims to predict when maintenance will be needed ideally create a ticket.
 ```
 ## Contibutors
 ```
@@ -24,8 +26,23 @@ Ryan D Barnett(https://github.com/RyanDBarnett)
 Jennica Stiehl(https://github.com/stiehlrod)
 ```
 ### Configuration
-```bundle install
+```
+bundle install
  ```
+#### Change your versions
+##### Open your Gemfile
+```
+Ruby '2.6.3'
+rbenv versions '2.6.3'
+```
+##### Install versions
+```
+rbenv install 2.6.3
+rebenv local 2.6.3
+gem install bundler -v 1.17.3
+bundle _1.17.3_ install
+```
+
 ### Database initialization
 ```rake db:{create,migration,seed}
 ```
@@ -59,6 +76,7 @@ bundle exec rspec
 -jQuery
 -Ruby on Rails
 -React
+-Postgresql
 ```
 
 ## Endpoints
@@ -74,7 +92,7 @@ Response:
     name: Cameron Marks,
     email: example@example.com,
     password_digest: qp34uchon8w47yabov8ezfhpv,
-    phone_number: 555-555-5555,
+    phone_number: 5555555555,
     role: admin,
     active: true,
     created_at: 2019-07-16T21:52:00.823Z,
@@ -89,7 +107,7 @@ Request:
     email: example@example.com,
     password: password,
     password_confirmation: password,
-    phone_number: 555-555-5555,
+    phone_number: 5555555555,
     role: admin
 }
 ```
@@ -100,7 +118,7 @@ Response:
     name: Cameron Marks,
     email: example@example.com,
     password_digest: qp34uchon8w47yabov8ezfhpv,
-    phone_number: 555-555-5555,
+    phone_number: 5555555555,
     role: admin,
     active: true,
     created_at: 2019-07-16T21:52:00.823Z,
@@ -111,7 +129,7 @@ Response:
 Request:
 ```javascript
 {
-    phone_number: 777-555-5555
+    phone_number: 7775555555
 }
 ```
 Response:
@@ -121,7 +139,7 @@ Response:
     name: Cameron Marks,
     email: example@example.com,
     password_digest: qp34uchon8w47yabov8ezfhpv,
-    phone_number: 777-555-5555,
+    phone_number: 7775555555,
     active: true,
     created_at: 2019-07-16T21:52:00.823Z,
     updated_at: 2019-07-16T21:52:00.823Z
@@ -139,7 +157,7 @@ Response:
         id:1,
         category: Bright Tank,
         company: Tanks.com,
-        contact_number: 444-444-4444,
+        contact_number: 4444444444,
         contact_name: John Johnson,
         active: true,
         created_at: 2019-07-16T21:52:00.823Z,
@@ -149,7 +167,7 @@ Response:
         id:2,
         category: Van,
         company: Chevrolet,
-        contact_number: 333-333-3333,
+        contact_number: 3333333333,
         contact_name: John Johnsonite,
         active: true,
         created_at: 2019-07-16T21:52:00.823Z,
@@ -168,7 +186,7 @@ Response:
     id:1,
     category: Bright Tank,
     company: Tanks.com,
-    contact_number: 444-444-4444,
+    contact_number: 4444444444,
     contact_name: John Johnson,
     manual_url: example.google.com
     active: true,
@@ -182,7 +200,7 @@ Request:
 {
     category: Bright Tank,
     company: Tanks.com,
-    contact_number: 444-444-4444,
+    contact_number: 4444444444,
     contact_name: John Johnson,
     manual_url: example.google.com
 }
@@ -193,7 +211,7 @@ Response:
     id:1,
     category: Bright Tank,
     company: Tanks.com,
-    contact_number: 444-444-4444,
+    contact_number: 4444444444,
     contact_name: John Johnson,
     manual_url: example.google.com
     active: true,
@@ -215,7 +233,7 @@ Response:
     id:1,
     category: Bright Tank,
     company: Tanks.gov,
-    contact_number: 444-444-4444,
+    contact_number: 4444444444,
     contact_name: John Johnson,
     manual_url: example.google.com
     active: true,
