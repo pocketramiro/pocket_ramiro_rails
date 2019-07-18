@@ -62,7 +62,7 @@ production:
 ```development: localhost:3000
 production: https://master.d3bx8qvhmbmxu.amplifyapp.com/
 ```
-### Versioning
+### Endpoint Versioning
 ```v1  7/18/2019
 ```
 ### Testing
