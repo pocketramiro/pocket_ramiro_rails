@@ -2,12 +2,12 @@
 
 ## Description
 ```
-Pocket Ramiro Rails is a backend service built in Rails that collaborates with two other services, Pocket Ramiro React[https://github.com/pocketramiro/pocket_ramiro_react] and Pocket Ramiro Documentation[https://master.d3bx8qvhmbmxu.amplifyapp.com/]. Together, theses three micro-services collaborate in order to provide facilities management for various small to medium sized businesses.
+Pocket Ramiro Rails is a backend service built in Rails that collaborates with two other services, Pocket Ramiro React[https://github.com/pocketramiro/pocket_ramiro_react] and Pocket Ramiro Documentation[https://master.d3bx8qvhmbmxu.amplifyapp.com/]. Together, these three micro-services collaborate in order to provide facilities management for various small to medium sized businesses.
 
-We modeled our apps with the help of Great Divide Brewery[https://greatdivide.com/]; after touring their facilities and discussing some of the dilemmas the face on a daily basis, we designed a solutions to as many as possible in one bundle.
+We modeled our apps with the help of Great Divide Brewery[https://greatdivide.com/]; after touring their facilities and discussing some of the dilemmas they face on a daily basis, we designed solutions to as many as possible.
 
 Problem and Solution One
-Currently, Great Divide has a system that is unused and we sought to understand why and how we could design something that would be more likely to be utilized.
+Currently, Great Divide has an unused system and we sought to understand why and how we could design something that would be more likely to be utilized.
 
 Our primary focus for this issue is to make our app mobile friendly since we learned that Great Divide is a place with more people on their feet than there are computer stations and they are very busy doing hands-on work all day long.
 
@@ -16,7 +16,7 @@ There are a great many machines and resources at Great Divide that are either un
 
 This problem has a two pronged solution. We created a ticketing system and a notes system both able to tie back to a specific resource or part or both. We have a ticket portal that will be able to display tickets in various ways.
 
-Future functionality aims to predict when maintenance will be needed ideally create a ticket.
+Future functionality aims to predict when maintenance will be needed, ideally creating a ticket automatically
 ```
 ## Contibutors
 ```
@@ -44,7 +44,7 @@ bundle _1.17.3_ install
 ```
 
 ### Database initialization
-```rake db:{create,migration,seed}
+```rake db:{create,migrate,seed}
 ```
 ### Getting Started/Requirements/Prerequisites/Dependencies
 ```Ruby version: ruby 2.6.3
@@ -77,9 +77,10 @@ bundle exec rspec
 -CircleCI
 -Javascript
 -Jest
--jQuery
 -Postgres
 -React
+-Redux
+-Router
 -RSpec
 -Ruby on Rails
 ```
