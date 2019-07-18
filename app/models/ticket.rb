@@ -4,6 +4,7 @@ class Ticket < ApplicationRecord
   belongs_to :user
 
   enum priority: { high:3 , medium: 2, low: 1 }
+  enum status: { received:0 , in_progress: 1, fulfilled:2 , cancelled:3}
 
   def self.all_active_tickets
     where(active:true)
