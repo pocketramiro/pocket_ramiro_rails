@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "as a registered user", type: :request do
-  it "I can see a specific resource in the system" do
+  it "I can see a specific user in the system" do
     Resource.destroy_all
     User.destroy_all
     ResourceType.destroy_all
