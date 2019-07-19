@@ -5,13 +5,26 @@ class Api::V1::Resources::TicketsController < ApplicationController
   end
 
   def create
-    ticket = Ticket.new(resource_ticket_params)
-    if ticket.save
-      render json: ticket
+    resource = Resource.find_by(id: params[:resource_id])
+    user = User.find_by(id: params[:user_id])
+    if resource && user
+    ticket = Ticket.create!(
+      table_key: resource.id,
+      table_name: "Resources",
+      user_id: user.id,
+      priority: params[:priority],
+      status: params[:status],
+      frequency_unit: params[:frequency_unit],
+      frequency_value: params[:frequency_value],
+      notes: params[:notes]
+    )
+      if ticket.save
+        render json: ticket
+      end
     else
         render json: {status: "406",
         body: {
-          "message": "Unable to create your ticket."
+          "Error": "Unable to create your ticket. Maybe the resource or the user do not exist."
           }}
     end
   end
@@ -36,7 +49,7 @@ class Api::V1::Resources::TicketsController < ApplicationController
 
 private
   def resource_ticket_params
-    params.permit(:table_key, :table_name, :priority, :notes, :user_id, :frequency_unit, :frequency_value, :active)
+    params.permit(:table_key, :table_name, :priority, :notes, :user_id, :frequency_unit, :frequency_value, :active, :status)
   end
 
 end
