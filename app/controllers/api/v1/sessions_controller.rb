@@ -9,9 +9,9 @@ class Api::V1::SessionsController < ApplicationController
             "session": session
           }, status: 200
     elsif !@user
-      render :json => { :error => "Forbidden" }, status: 403
+      render :json => { :error => "Forbidden", :message => "Email does not exist in database." }, status: 403
     elsif !@user.authenticate(user_params[:password])
-      render :json => { :error => "Forbidden" }, status: 403
+      render :json => { :error => "Forbidden", :message => "Bad credentials." }, status: 403
     end
   end
 

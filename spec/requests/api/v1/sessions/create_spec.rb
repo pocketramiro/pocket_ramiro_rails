@@ -23,10 +23,20 @@ RSpec.describe "As a registered user", type: :request do
   end
 
   describe "when I enter an email that is not in the db" do
-
+    it "throws an error with a message" do
+      post("/api/v1/sessions?email=email@email.com&password=asdf")
+      expect(response.status).to eq(403)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:message]).to eq("Email does not exist in database.")
+    end
   end
 
   describe "when I enter the wrong password" do
-
+    it "throws an error with a message" do
+      post("/api/v1/sessions?email=#{@user.email}&password=butts")
+      expect(response.status).to eq(403)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:message]).to eq("Bad credentials.")
+    end
   end
 end
