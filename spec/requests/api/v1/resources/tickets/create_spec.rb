@@ -13,6 +13,7 @@ RSpec.describe 'as a registered user', :type => :request do
 
   describe 'when i go to the ticket dashboard' do
     it 'I can add a ticket to the system' do
+      User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password:"password", role:0)
 
       params = {
         priority: "medium",

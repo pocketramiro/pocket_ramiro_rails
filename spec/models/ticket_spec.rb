@@ -20,7 +20,7 @@ RSpec.describe Ticket, type: :model do
       ResourceType.destroy_all
       User.destroy_all
 
-      @user1 = User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password_digest:"password", role:0)
+      @user1 = User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password:"password", role:0)
       @rtype1 = ResourceType.create(id: 1, category:"vehicle", company:"Brew Bears")
       @rtype2 = ResourceType.create(id: 2, category:"equipment", company:"Brew Bears")
       @resource1 = Resource.create(id: 1, resource_type_id:1, name:"van", cost:"75000", user_id:1)

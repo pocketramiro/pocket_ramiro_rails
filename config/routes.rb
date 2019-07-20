@@ -29,6 +29,8 @@ Rails.application.routes.draw do
       resources :resource_types, only: [:index, :create, :show, :update]
 
       resources :users, only: [:show, :create, :update, :index]
+
+      resources :sessions, only: [:create, :destroy]
     end
   end
 end

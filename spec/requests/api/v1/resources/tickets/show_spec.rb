@@ -8,7 +8,7 @@ RSpec.describe 'as a registered user', :type => :request do
       ResourceType.destroy_all
       User.destroy_all
 
-      User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password_digest:"password", role:0)
+      User.create(id:1, name:"jennica", email:"jennica.stiehl@gmail.com", password:"password", role:0)
       ResourceType.create(id: 1, category:"vehicle", company:"Brew Bears")
       ResourceType.create(id: 2, category:"equipment", company:"Brew Bears")
       Resource.create(id: 1, resource_type_id:1, name:"van", cost:"75000", user_id:1)
