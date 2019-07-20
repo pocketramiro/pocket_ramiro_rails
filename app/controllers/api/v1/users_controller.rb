@@ -24,10 +24,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
+    user = User.find_by_email(params[:email])
     if user
       user.update(user_params)
-      updated_user = User.find(params[:id])
+      updated_user = User.find_by_email(params[:email])
       render json: updated_user
     else
       render json: {
@@ -39,15 +39,13 @@ class Api::V1::UsersController < ApplicationController
   private
 
     def user_params
-      params.permit(:id,
-                    :name,
+      params.permit(:name,
                     :email,
-                    :password_digest,
+                    :password,
+                    :password_confirmation,
                     :role,
                     :phone_number,
-                    :active,
-                    :created_at,
-                    :updated_at)
+                    :active)
     end
 
 end
