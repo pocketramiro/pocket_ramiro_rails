@@ -6,21 +6,28 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    if user.save
-      render json: user
+    if user_params[:password] == user_params[:password_confirmation]
+      @user = User.new(user_params)
+      if @user.save
+        render json: @user, status: 201
+      elsif User.find_by(email: user_params[:email])
+        render json: { error: "User already exists" },
+                       status: 409
+      else
+        render json: { error: "Bad Request" },
+                       status: 400
+      end
     else
-      render json: {
-        "Error": "User could not be created."
-      }
+      render json: { error: "Passwords must match." },
+                     status: 409
     end
   end
 
   def update
-    user = User.find(params[:id])
+    user = User.find_by_email(params[:email])
     if user
       user.update(user_params)
-      updated_user = User.find(params[:id])
+      updated_user = User.find_by_email(params[:email])
       render json: updated_user
     else
       render json: {
@@ -32,15 +39,13 @@ class Api::V1::UsersController < ApplicationController
   private
 
     def user_params
-      params.permit(:id,
-                    :name,
+      params.permit(:name,
                     :email,
-                    :password_digest,
+                    :password,
+                    :password_confirmation,
                     :role,
                     :phone_number,
-                    :active,
-                    :created_at,
-                    :updated_at)
+                    :active)
     end
 
 end
