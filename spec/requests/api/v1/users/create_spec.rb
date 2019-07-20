@@ -13,11 +13,10 @@ RSpec.describe "as a registered user", type: :request do
       name: "Cameron Marks",
       email: "cameron_marks@greatdivide.com",
       password: "password",
+      password_confirmation: "password",
       role: "admin",
       phone_number: 7208674848,
-      active: true,
-      created_at: "2015-11-29 00:00:00",
-      updated_at: "2019-06-01 00:00:00"
+      active: true
     }
 
     post "/api/v1/users", params: new_user
@@ -26,16 +25,18 @@ RSpec.describe "as a registered user", type: :request do
     results = JSON.parse(response.body, symbolize_names: true)
     expect(results[:name]).to eq("Cameron Marks")
     expect(results[:email]).to eq("cameron_marks@greatdivide.com")
-    expect(results[:id]).to eq(1)
     expect(results[:active]).to eq(true)
     expect(results[:phone_number]).to eq(7208674848)
   end
 
-  it "shows me an error message if user does not save" do
+  it "shows me an error message if user already exists" do
+    User.create(id: 1, name: "Cameron Marks", email: "cameron_marks@greatdivide.com", password: "password", role: "admin", phone_number: 7208674848, active: true, created_at: "2015-11-29 00:00:00", updated_at: "2019-06-01 00:00:00")
     new_user = {
       id: 1,
       name: "Cameron Marks",
+      email: "cameron_marks@greatdivide.com",
       password: "password",
+      password_confirmation: "password",
       role: "admin",
       phone_number: 7208674848,
       active: true,
@@ -44,14 +45,36 @@ RSpec.describe "as a registered user", type: :request do
     }
     post "/api/v1/users", params: new_user
 
-    expect(response).to be_successful
+    expect(response).to_not be_successful
+    results = JSON.parse(response.body, symbolize_names: true)
+
+    expect(results).to eq({
+      error: "User already exists"
+      })
+  end
+
+  it "shows me an error if passwords do not match" do
+    new_user = {
+      id: 1,
+      name: "Cameron Marks",
+      email: "cameron_marks@greatdivide.com",
+      password: "password",
+      password_confirmation: "asdf",
+      role: "admin",
+      phone_number: 7208674848,
+      active: true,
+      created_at: "2015-11-29 00:00:00",
+      updated_at: "2019-06-01 00:00:00"
+    }
+    post "/api/v1/users", params: new_user
+    
+    expect(response.status).to eq(409)
     results = JSON.parse(response.body, symbolize_names: true)
 
     user = User.last
     expect(user).to eq(nil)
     expect(results).to eq({
-      "Error": "User could not be created."
+      error: "Passwords must match."
       })
-
   end
 end

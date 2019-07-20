@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
                        status: 400
       end
     else
-      render json: { error: "Passwords must match" },
+      render json: { error: "Passwords must match." },
                      status: 409
     end
   end
