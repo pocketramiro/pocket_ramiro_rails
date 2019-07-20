@@ -1,7 +1,6 @@
 # pocket_ramiro_rails
 
 ## Description
-```
 Pocket Ramiro Rails is a backend service built in Rails that collaborates with two other services, Pocket Ramiro React[https://github.com/pocketramiro/pocket_ramiro_react] and Pocket Ramiro Documentation[https://master.d3bx8qvhmbmxu.amplifyapp.com/]. Together, these three micro-services collaborate in order to provide facilities management for various small to medium sized businesses.
 
 We modeled our apps with the help of Great Divide Brewery[https://greatdivide.com/]; after touring their facilities and discussing some of the dilemmas they face on a daily basis, we designed solutions to as many as possible.
@@ -17,15 +16,15 @@ There are a great many machines and resources at Great Divide that are either un
 This problem has a two pronged solution. We created a ticketing system and a notes system both able to tie back to a specific resource or part or both. We have a ticket portal that will be able to display tickets in various ways.
 
 Future functionality aims to predict when maintenance will be needed, ideally creating a ticket automatically
-```
+
 ## Contibutors
-![Carrie Walsh](https://github.com/carriewalsh)
+[Carrie Walsh](https://github.com/carriewalsh)
 
-![Michael King-Stockton](https://github.com/KStockton)
+[Jennica Stiehl](https://github.com/stiehlrod)
 
-![Ryan D Barnett](https://github.com/RyanDBarnett)
+[Michael King-Stockton](https://github.com/KStockton)
 
-![Jennica Stiehl](https://github.com/stiehlrod)
+[Ryan D Barnett](https://github.com/RyanDBarnett)
 
 ## Schema
 ![Pocket Ramiro Rails Schema](/pr_schema.png?raw=true "Pocket Ramiro Rails Schema")
@@ -54,48 +53,51 @@ bundle _1.17.3_ install
 rake db:{create,migrate,seed}
 ```
 ### Getting Started/Requirements/Prerequisites/Dependencies
-```
+
 Ruby version: ruby 2.6.3
-```
+
 ## Locations/Where to Find the applications
 ### Pocket Ramiro Rails
-```
+
 development: localhost:3000/api/v1/resources
+
 production: http://pocketramirorails2-env.ejk9ccddbs.us-west-1.elasticbeanstalk.com/api/v1/resources
-```
+
 ### Pocket Ramiro React
-```
+
 development: localhost:3000
+
 production:
-```
+
 ### Pocket Ramiro Documentation
-```
+
 development: localhost:3000
+
 production: https://master.d3bx8qvhmbmxu.amplifyapp.com/
-```
+
 ## Endpoint Versioning
-```
+
 v1  7/18/2019
-```
+
 ## Testing
 ```
 rails generate rspec:install
 bundle exec rspec
 ```
 ## Tech Stack
-```
--ActiveRecord  
--AWS: Elastic Beanstalk, RDS, Amplify
--CircleCI
--Javascript
--Jest
--Postgres
--React
--Redux
--Router
--RSpec
--Ruby on Rails
-```
+
+- ActiveRecord  
+- AWS: Elastic Beanstalk, RDS, Amplify
+- CircleCI
+- Javascript
+- Jest
+- Postgres
+- React
+- Redux
+- Router
+- RSpec
+- Ruby on Rails
+
 
 ## Endpoints
-![Endpoint Documentation:](https://master.d3bx8qvhmbmxu.amplifyapp.com/)
+[Endpoint Documentation:](https://master.d3bx8qvhmbmxu.amplifyapp.com/)
