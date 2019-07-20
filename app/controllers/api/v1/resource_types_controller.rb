@@ -1,4 +1,6 @@
 class Api::V1::ResourceTypesController < ApplicationController
+  before_action :current_user
+  before_action :current_boss_people, only: [:update,:create]
 
   def index
     resource_types = ResourceType.all_active_resource_types

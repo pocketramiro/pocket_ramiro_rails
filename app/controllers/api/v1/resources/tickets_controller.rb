@@ -1,4 +1,6 @@
 class Api::V1::Resources::TicketsController < ApplicationController
+  before_action :current_user
+
   def index
     results = Ticket.tickets_by_resource(params["resource_id"].to_i)
     render json: results

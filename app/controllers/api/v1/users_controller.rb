@@ -1,4 +1,7 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :current_user
+  before_action :current_admin, only: [:update,:create]
+  # currently, there is no user updating their own information functionality
 
   def show
     user = User.find(params[:id])

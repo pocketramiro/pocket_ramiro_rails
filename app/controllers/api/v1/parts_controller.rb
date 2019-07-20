@@ -1,4 +1,6 @@
 class Api::V1::PartsController < ApplicationController
+  before_action :current_user
+  before_action :current_boss_people, only: [:update,:create]
 
   def index
     parts = Part.all
