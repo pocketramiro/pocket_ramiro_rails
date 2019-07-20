@@ -12,7 +12,7 @@ RSpec.describe "as a registered user", type: :request do
       id: 1,
       name: "Cameron Marks",
       email: "cameron_marks@greatdivide.com",
-      password_digest: "password",
+      password: "password",
       role: "admin",
       phone_number: 7208674848,
       active: true,
@@ -35,7 +35,7 @@ RSpec.describe "as a registered user", type: :request do
     new_user = {
       id: 1,
       name: "Cameron Marks",
-      password_digest: "password",
+      password: "password",
       role: "admin",
       phone_number: 7208674848,
       active: true,
