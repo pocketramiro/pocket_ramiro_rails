@@ -5,8 +5,8 @@ class Api::V1::Resources::TicketsController < ApplicationController
   end
 
   def create
-    resource = Resource.find_by(id: params[:resource_id])
-    user = User.find_by(id: params[:user_id])
+    resource = Resource.find_by(id: params["resource_id"])
+    user = User.find_by(id: params["user_id"])
     if resource && user
     ticket = Ticket.create!(
       table_key: resource.id,
