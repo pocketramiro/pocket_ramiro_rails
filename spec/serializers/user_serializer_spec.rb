@@ -12,7 +12,6 @@ RSpec.describe TicketSerializer do
 
       serializer = UserSerializer.new(user)
 
-      # binding.pry
       response = JSON.parse(serializer.to_json, symbolize_names: true)
       expect(response[:data][:attributes][:name]).to eq("Cameron Marks")
       expect(response[:data][:attributes][:id]).to eq(user.id)
