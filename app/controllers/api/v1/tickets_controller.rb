@@ -1,4 +1,5 @@
 class Api::V1::TicketsController < ApplicationController
+  before_action :current_user
 
   def index
     if params[:table] || params[:active]

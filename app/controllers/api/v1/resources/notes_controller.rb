@@ -1,4 +1,6 @@
 class Api::V1::Resources::NotesController < ApplicationController
+  before_action :current_user
+
   def index
     notes = Note.notes_by_resource(params["resource_id"].to_i)
     render json: notes
