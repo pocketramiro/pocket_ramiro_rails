@@ -27,10 +27,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by_email(params[:email])
+    user = User.find_by(id: params[:id])
     if user
+      # binding.pry
       user.update(user_params)
-      updated_user = User.find_by_email(params[:email])
+      updated_user = User.find_by(id: params[:id])
       render json: updated_user
     else
       render json: {
