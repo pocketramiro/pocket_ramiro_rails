@@ -2,12 +2,12 @@ class Api::V1::ResourcesController < ApplicationController
 
   def index
     resources = Resource.all_active_resources
-    render json: resources
+    render json: ResourceSerializer.new(resources, {include: [:user]})
   end
 
   def show
     resource = Resource.find(resource_params[:id])
-    render json: resource
+    render json: ResourceSerializer.new(resource, {include: [:user]})
   end
 
   def create

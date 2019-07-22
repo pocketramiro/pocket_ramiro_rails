@@ -18,10 +18,10 @@ RSpec.describe "as a registered user", type: :request do
     expect(response).to be_successful
     results = JSON.parse(response.body, symbolize_names: true)
 
-    expect(results[:name]).to eq("Bright Tank 1")
-    expect(results[:cost]).to eq(20000.00)
-    expect(results[:user_id]).to eq(1)
-    expect(results[:active]).to eq(true)
+    expect(results[:data][:attributes][:name]).to eq("Bright Tank 1")
+    expect(results[:data][:attributes][:cost]).to eq(20000.00)
+    expect(results[:data][:attributes][:user_id]).to eq(1)
+    expect(results[:data][:attributes][:active]).to eq(true)
   end
 
   # need to add test for if id is not active
