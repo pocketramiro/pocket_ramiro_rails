@@ -1,12 +1,12 @@
 class Api::V1::Resources::NotesController < ApplicationController
   def index
     notes = Note.notes_by_resource(params["resource_id"].to_i)
-    render json: notes
+    render json: NoteSerializer.new(notes, {include: [:user]})
   end
 
   def show
     note = Note.find(params["id"])
-    render json: note
+    render json: NoteSerializer.new(note, {include: [:user]})
   end
 
   def create
