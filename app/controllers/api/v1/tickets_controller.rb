@@ -13,7 +13,7 @@ class Api::V1::TicketsController < ApplicationController
 
   def show
     ticket = Ticket.find(params["id"].to_i)
-    render json: ticket
+    render json: TicketSerializer.new(ticket, {include: [:user]})
   end
 
 end
