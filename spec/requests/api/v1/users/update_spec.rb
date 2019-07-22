@@ -8,7 +8,7 @@ RSpec.describe "as a registered user", type: :request do
     User.destroy_all
     ResourceType.destroy_all
     @user  = User.create(id: 1, name: "Cameron Marks", email: "cameron_marks@greatdivide.com", password: "password", role: "admin", phone_number: 7208674848, active: true, created_at: "2015-11-29 00:00:00", updated_at: "2019-06-01 00:00:00")
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
 
   it "I can update a user" do
@@ -18,10 +18,10 @@ RSpec.describe "as a registered user", type: :request do
 
     expect(response).to be_successful
     results = JSON.parse(response.body, symbolize_names: true)
-    # binding.pry
-    expect(results[:name]).to eq("Cameron Marks")
-    expect(results[:email]).to eq("cameron_marks@greatdivide.com")
-    expect(results[:active]).to eq(true)
-    expect(results[:phone_number]).to eq(5673912843)
+
+    expect(response.status).to eq(200)
+    expect(results[:message]).to eq("Successfully updated user.")
+
+    expect(User.last.phone_number).to eq(5673912843)
   end
 end
