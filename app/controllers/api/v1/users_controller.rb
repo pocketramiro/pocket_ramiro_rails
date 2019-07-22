@@ -31,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     if @user
-      @user.update!(update_params)
+      @user.update(update_params)
       updated_user = User.find_by(id: params[:id])
       render json: {"message": "Successfully updated user."}
     else
