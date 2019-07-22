@@ -22,10 +22,8 @@ RSpec.describe "as a registered user", type: :request do
     # expect(response).to be_successful
 
     results = JSON.parse(response.body, symbolize_names: true)
-    expect(results[:name]).to eq("Kurt Walsh")
-    expect(results[:email]).to eq("kurt@greatdivide.com")
-    expect(results[:active]).to eq(true)
-    expect(results[:phone_number]).to eq(7208674848)
+    expect(response.status).to eq(201)
+    expect(results[:message]).to eq("Successfully created Kurt Walsh.")
   end
 
   it "shows me an error message if user already exists" do
