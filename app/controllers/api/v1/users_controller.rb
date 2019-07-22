@@ -29,11 +29,14 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by_email(params[:email])
-    if user
-      user.update(user_params)
-      updated_user = User.find_by_email(params[:email])
-      render json: updated_user
+    binding.pry
+    @user = :current_user
+    if @user.update(update_params)
+    # user = User.find_by(id: params[:id])
+    # if user
+    #   user.update(update_params)
+    #   updated_user = User.find_by(id: params[:id])
+      render json: @user
     else
       render json: {
         "Error": "User does not exist in database."
@@ -44,13 +47,10 @@ class Api::V1::UsersController < ApplicationController
   private
 
     def user_params
-      params.permit(:name,
-                    :email,
-                    :password,
-                    :password_confirmation,
-                    :role,
-                    :phone_number,
-                    :active)
+      params.permit(:id, :name, :email, :password, :password_confirmation, :role, :phone_number, :active)
     end
 
+    def  update_params
+      params.permit(:name, :phone_number, :active, :role)
+    end
 end
