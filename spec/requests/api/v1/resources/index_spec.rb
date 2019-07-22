@@ -15,10 +15,10 @@ RSpec.describe "as a registered user", type: :request do
     expect(response).to be_successful
     results = JSON.parse(response.body, symbolize_names: true)
 
-    expect(results.count).to eq(2)
-    expect(results[0][:name]).to eq("Bright Tank 1")
-    expect(results[0][:cost]).to eq(20000.00)
-    expect(results[0][:user_id]).to eq(1)
-    expect(results[0][:active]).to eq(true)
+    expect(results[:data].count).to eq(2)
+    expect(results[:data][0][:attributes][:name]).to eq("Bright Tank 1")
+    expect(results[:data][0][:attributes][:cost]).to eq(20000.00)
+    expect(results[:data][0][:attributes][:user_id]).to eq(1)
+    expect(results[:data][0][:attributes][:active]).to eq(true)
   end
 end

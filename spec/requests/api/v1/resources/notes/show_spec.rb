@@ -18,10 +18,10 @@ RSpec.describe "as a registered user", type: :request do
       expect(response).to be_successful
       results = JSON.parse(response.body, symbolize_names: true)
 
-      expect(results[:id]).to eq(2)
-      expect(results[:user_id]).to eq(1)
-      expect(results[:table_key]).to eq(1)
-      expect(results[:table_name]).to eq("Resources")
+      expect(results[:data][:attributes][:id]).to eq(2)
+      expect(results[:data][:attributes][:user_id]).to eq(1)
+      expect(results[:data][:attributes][:table_key]).to eq(1)
+      expect(results[:data][:attributes][:table_name]).to eq("Resources")
     end
   end
 end
