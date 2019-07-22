@@ -31,10 +31,10 @@ RSpec.describe 'as a registered user', :type => :request do
       get '/api/v1/resources/1/tickets'
       expect(response).to be_successful
       results = JSON.parse(response.body, symbolize_name: true)
-      expect(results.count).to eq(2)
-      expect(results[0]["table_key"]).to be_a(Integer)
-      expect(results[0]["table_name"]).to be_a(String)
-      expect(results[0]["notes"]).to be_a(String)
+      expect(results["data"].count).to eq(2)
+      expect(results["data"][0]["attributes"]["table_key"]).to be_a(Integer)
+      expect(results["data"][0]["attributes"]["table_name"]).to be_a(String)
+      expect(results["data"][0]["attributes"]["notes"]).to be_a(String)
     end
   end
 end

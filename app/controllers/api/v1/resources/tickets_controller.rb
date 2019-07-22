@@ -1,7 +1,7 @@
 class Api::V1::Resources::TicketsController < ApplicationController
   def index
-    results = Ticket.tickets_by_resource(params["resource_id"].to_i)
-    render json: results
+    tickets = Ticket.tickets_by_resource(params["resource_id"].to_i)
+    render json: TicketSerializer.new(tickets, {include: [:user]})
   end
 
   def create
@@ -31,7 +31,7 @@ class Api::V1::Resources::TicketsController < ApplicationController
 
   def show
     ticket = Ticket.find(params["ticket_id"].to_i)
-    render json: ticket
+    render json: TicketSerializer.new(ticket, {include: [:user]})
   end
 
   def update
