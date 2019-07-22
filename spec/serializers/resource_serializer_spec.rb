@@ -4,9 +4,8 @@ RSpec.describe ResourceSerializer do
   describe "When calling for a resource" do
     it "returns the related user" do
       Resource.destroy_all
-      Resource.destroy_all
-      User.destroy_all
       ResourceType.destroy_all
+      User.destroy_all
 
       user  = User.create(id: 1, name: "Cameron Marks", email: "cameron_marks@greatdivide.com", password: "password", role: 0, phone_number: 7208674848, active: true, created_at: "2015-11-29 00:00:00", updated_at: "2019-06-01 00:00:00")
       ResourceType.create(id: 1, category:"vehicle", company:"Brew Bears")
