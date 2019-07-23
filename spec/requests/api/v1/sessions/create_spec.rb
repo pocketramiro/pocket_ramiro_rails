@@ -16,9 +16,9 @@ RSpec.describe "As a registered user", type: :request do
 
       expect(response.status).to eq(200)
       body = JSON.parse(response.body, symbolize_names: true)
-      expect(body[:session][:user_id]).to eq(@user.id)
-      expect(body[:session][:name]).to eq(@user.name)
-      expect(body[:session][:role]).to eq(@user.role)
+      expect(body[:user_id]).to eq(@user.id)
+      expect(body[:name]).to eq(@user.name)
+      expect(body[:role]).to eq(@user.role)
     end
   end
 
