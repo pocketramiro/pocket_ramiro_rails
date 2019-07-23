@@ -15,4 +15,9 @@ class Resource < ApplicationRecord
     results = ActiveRecord::Base.connection.execute(sql)
   end
 
+  def self.high_volume_tickets
+    sql = "select resources.name, resources.id, count(table_key)as number_tickets from resources left outer join tickets on resources.id = tickets.table_key group by resources.name, resources.id having count(table_name) >= 2;"
+    results = ActiveRecord::Base.connection.execute(sql)
+  end
+
 end

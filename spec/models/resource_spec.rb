@@ -27,7 +27,7 @@ RSpec.describe Resource, type: :model do
       @resource2 = @r_type1.resources.create(name: "Bright Tank 2", cost:10000.00, user_id: 1, created_at: "2007-12-29 13:13:04", updated_at: "2007-12-29 13:13:04", active: true,id: 2)
       @resource3 = @r_type1.resources.create(name: "Bright Tank 4", cost:10000.00, user_id: 1, created_at: "2013-12-22 4:11:33", updated_at: "2018-12-22 4:11:33", active: false,id: 3)
       @ticket1 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:1)
-      # @ticket2 = Ticket.create(table_key: 2, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:2)
+      @ticket2 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:2)
 
 
     end
@@ -43,6 +43,15 @@ RSpec.describe Resource, type: :model do
         expect(results[0]["open_ticket"]).to eq(1)
         expect(results[0]["priority"]).to eq(1)
         expect(results[0]["table_name"]).to eq("Resources")
+      end
+    end
+    describe '.high_volume_tickets' do
+      it 'can return resources with the most tickets' do
+        results = Resource.high_volume_tickets
+        
+        expect(results[0]["name"]).to eq("Bright Tank 1")
+        expect(results[0]["id"]).to eq(1)
+        expect(results[0]["number_tickets"]).to eq(2)
       end
     end
   end
