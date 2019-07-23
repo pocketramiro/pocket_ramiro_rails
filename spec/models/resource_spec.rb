@@ -26,11 +26,23 @@ RSpec.describe Resource, type: :model do
       @resource1 = @r_type1.resources.create(name: "Bright Tank 1", cost:20000.00, user_id: 1, created_at: "2008-02-09 16:49:29", updated_at: "2008-02-09 16:49:29", active: true,id: 1)
       @resource2 = @r_type1.resources.create(name: "Bright Tank 2", cost:10000.00, user_id: 1, created_at: "2007-12-29 13:13:04", updated_at: "2007-12-29 13:13:04", active: true,id: 2)
       @resource3 = @r_type1.resources.create(name: "Bright Tank 4", cost:10000.00, user_id: 1, created_at: "2013-12-22 4:11:33", updated_at: "2018-12-22 4:11:33", active: false,id: 3)
+      @ticket1 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:1)
+      # @ticket2 = Ticket.create(table_key: 2, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:2)
+
+
     end
     describe '.all_active_resource' do
       it 'returns active resources' do
         expect(Resource.all_active_resources).to eq([@resource1, @resource2])
         expect(Resource.all_active_resources).to_not eq([@resource3])
+      end
+    end
+    describe '.all_with_tickets' do
+      it 'can return a flag on resources that have an open ticket' do
+        results = Resource.all_with_tickets
+        expect(results[0]["open_ticket"]).to eq(1)
+        expect(results[0]["priority"]).to eq(1)
+        expect(results[0]["table_name"]).to eq("Resources")
       end
     end
   end

@@ -10,4 +10,9 @@ class Resource < ApplicationRecord
     where(active:true)
   end
 
+  def self.all_with_tickets
+    sql = "select *, case when table_key is not null then 1 end as open_ticket from resources left outer join tickets on resources.id = tickets.table_key;"
+    results = ActiveRecord::Base.connection.execute(sql)
+  end
+
 end
