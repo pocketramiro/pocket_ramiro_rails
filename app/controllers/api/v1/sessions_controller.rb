@@ -5,9 +5,7 @@ class Api::V1::SessionsController < ApplicationController
       session[:user_id] = @user.id
       session[:name] = @user.name
       session[:role] = @user.role
-      render json: {
-            "session": session
-          }, status: 200
+      render json: session, status: 200
     elsif !@user
       render :json => { :error => "Forbidden", :message => "Email does not exist in database." }, status: 403
     elsif !@user.authenticate(user_params[:password])
