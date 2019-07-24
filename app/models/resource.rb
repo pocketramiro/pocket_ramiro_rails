@@ -11,21 +11,34 @@ class Resource < ApplicationRecord
   end
 
   def self.all_with_tickets
-    sql = "select *, case when table_key is not null then 1 end as open_ticket from resources left outer join tickets on resources.id = tickets.table_key;"
+    sql = "SELECT *, CASE WHEN table_key is not null THEN 1 END as open_ticket
+              FROM resources LEFT OUTER JOIN tickets on resources.id = tickets.table_key;"
     results = ActiveRecord::Base.connection.execute(sql)
   end
 
   def self.high_volume_tickets
-    sql = "select resources.name, resources.id, count(table_key)as number_tickets from resources left outer join tickets on resources.id = tickets.table_key group by resources.name, resources.id having count(table_name) >= 2;"
+    sql = "SELECT resources.name, resources.id, count(table_key)as number_tickets
+              FROM resources LEFT OUTER JOIN tickets on resources.id = tickets.table_key
+              GROUP BY resources.name, resources.id having count(table_name) >= 2;"
     results = ActiveRecord::Base.connection.execute(sql)
   end
 
   def self.perc_urgent_tickets
-    sql = "Select
-            (sum(case when table_key is not null then 1.0 else 0 end)
+    sql = "SELECT
+            (sum(CASE WHEN table_key is not null THEN 1.0 ELSE 0 END)
             /count(*)) as perc_urgent_tickets
               FROM resources
-              left outer join tickets on tickets.table_key = resources.id;"
+              LEFT OUTER JOIN tickets on tickets.table_key = resources.id;"
+    results = ActiveRecord::Base.connection.execute(sql)
+  end
+
+  def self.fulfilled_tickets
+    sql = "SELECT (sum(CASE WHEN status = 2 THEN 1.0 ELSE 0 END)) as fulfilled,
+            count(*) as total_tix,
+            (sum(CASE WHEN status = 2 THEN 1.0 ELSE 0 END)
+            /count(*)) as fulfilled_tickets
+              FROM resources
+              INNER JOIN tickets on tickets.table_key = resources.id;"
     results = ActiveRecord::Base.connection.execute(sql)
   end
 

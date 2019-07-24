@@ -33,18 +33,18 @@ RSpec.describe Resource, type: :model do
       @resource8 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 8:11:33", updated_at: "2018-12-22 8:11:33", active: false,id: 8)
       @resource9 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 9:11:33", updated_at: "2019-12-22 9:11:33", active: false,id: 9)
       @resource10 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 10:11:33", updated_at: "20110-12-22 10:11:33", active: false,id: 10)
-      @ticket1 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:1)
-      @ticket2 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:2)
-      @ticket3 = Ticket.create(table_key: 3, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:3)
-      @ticket4 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:4)
-      @ticket5 = Ticket.create(table_key: 5, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:5)
-      @ticket6 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:6)
-      @ticket7 = Ticket.create(table_key: 7, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:7)
-      @ticket8 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:8)
-      @ticket9 = Ticket.create(table_key: 9, table_name: "Resources", user_id:1, notes:"needs oil change", priority:2, active: true, id:9)
-      @ticket10 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:10)
-      @ticket11 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:11)
-      @ticket12 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:12)
+      @ticket1 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:1, status: 2)
+      @ticket2 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:2, status: 1)
+      @ticket3 = Ticket.create(table_key: 3, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:3, status: 2)
+      @ticket4 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:4, status: 1)
+      @ticket5 = Ticket.create(table_key: 5, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:5, status: 2)
+      @ticket6 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:6, status: 1)
+      @ticket7 = Ticket.create(table_key: 7, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:7, status: 2)
+      @ticket8 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:8, status: 1)
+      @ticket9 = Ticket.create(table_key: 9, table_name: "Resources", user_id:1, notes:"needs oil change", priority:2, active: true, id:9, status: 2)
+      @ticket10 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:10, status: 1)
+      @ticket11 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:11, status: 2)
+      @ticket12 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:12, status: 1)
 
 
     end
@@ -75,6 +75,12 @@ RSpec.describe Resource, type: :model do
       it 'can return % resources with urgent tickets' do
         results = Resource.perc_urgent_tickets
         expect(results[0]["perc_urgent_tickets"]).to eq("0.70588235294117647059")
+      end
+    end
+    describe '.fulfilled_tickets' do
+      it 'can return % resources with urgent tickets' do
+        results = Resource.fulfilled_tickets
+        expect(results[0]["fulfilled_tickets"]).to eq("0.50000000000000000000")
       end
     end
   end
