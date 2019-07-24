@@ -26,8 +26,25 @@ RSpec.describe Resource, type: :model do
       @resource1 = @r_type1.resources.create(name: "Bright Tank 1", cost:20000.00, user_id: 1, created_at: "2008-02-09 16:49:29", updated_at: "2008-02-09 16:49:29", active: true,id: 1)
       @resource2 = @r_type1.resources.create(name: "Bright Tank 2", cost:10000.00, user_id: 1, created_at: "2007-12-29 13:13:04", updated_at: "2007-12-29 13:13:04", active: true,id: 2)
       @resource3 = @r_type1.resources.create(name: "Bright Tank 4", cost:10000.00, user_id: 1, created_at: "2013-12-22 4:11:33", updated_at: "2018-12-22 4:11:33", active: false,id: 3)
+      @resource4 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 4:11:33", updated_at: "2018-12-22 4:11:33", active: false,id: 4)
+      @resource5 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 5:11:33", updated_at: "2018-12-22 5:11:33", active: false,id: 5)
+      @resource6 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 6:11:33", updated_at: "2018-12-22 6:11:33", active: false,id: 6)
+      @resource7 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 7:11:33", updated_at: "2018-12-22 7:11:33", active: false,id: 7)
+      @resource8 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 8:11:33", updated_at: "2018-12-22 8:11:33", active: false,id: 8)
+      @resource9 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 9:11:33", updated_at: "2019-12-22 9:11:33", active: false,id: 9)
+      @resource10 = @r_type1.resources.create(name: "Bright Tank 3", cost:10000.00, user_id: 1, created_at: "2013-12-22 10:11:33", updated_at: "20110-12-22 10:11:33", active: false,id: 10)
       @ticket1 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:1)
       @ticket2 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:2)
+      @ticket3 = Ticket.create(table_key: 3, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:3)
+      @ticket4 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:4)
+      @ticket5 = Ticket.create(table_key: 5, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:5)
+      @ticket6 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:6)
+      @ticket7 = Ticket.create(table_key: 7, table_name: "Resources", user_id:1, notes:"needs oil change", priority:3, active: true, id:7)
+      @ticket8 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:8)
+      @ticket9 = Ticket.create(table_key: 9, table_name: "Resources", user_id:1, notes:"needs oil change", priority:2, active: true, id:9)
+      @ticket10 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:10)
+      @ticket11 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs oil change", priority:1, active: true, id:11)
+      @ticket12 = Ticket.create(table_key: 1, table_name: "Resources", user_id:1, notes:"needs new transmission", priority:3, active: true, id:12)
 
 
     end
@@ -48,10 +65,16 @@ RSpec.describe Resource, type: :model do
     describe '.high_volume_tickets' do
       it 'can return resources with the most tickets' do
         results = Resource.high_volume_tickets
-        
+
         expect(results[0]["name"]).to eq("Bright Tank 1")
         expect(results[0]["id"]).to eq(1)
-        expect(results[0]["number_tickets"]).to eq(2)
+        expect(results[0]["number_tickets"]).to eq(8)
+      end
+    end
+    describe '.perc_urgent_tickets' do
+      it 'can return % resources with urgent tickets' do
+        results = Resource.perc_urgent_tickets
+        expect(results[0]["perc_urgent_tickets"]).to eq("0.70588235294117647059")
       end
     end
   end

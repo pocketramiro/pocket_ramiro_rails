@@ -20,4 +20,13 @@ class Resource < ApplicationRecord
     results = ActiveRecord::Base.connection.execute(sql)
   end
 
+  def self.perc_urgent_tickets
+    sql = "Select
+            (sum(case when table_key is not null then 1.0 else 0 end)
+            /count(*)) as perc_urgent_tickets
+              FROM resources
+              left outer join tickets on tickets.table_key = resources.id;"
+    results = ActiveRecord::Base.connection.execute(sql)
+  end
+
 end
